@@ -1,3 +1,4 @@
+use base64::prelude::*;
 use std::{fs, path::Path};
 
 use chacha20poly1305::{
@@ -28,10 +29,12 @@ impl EnDeCode for Chacha {
         let nonce = ChaCha20Poly1305::generate_nonce(&mut OsRng);
         let ciphertext = cipher.encrypt(&nonce, data).unwrap();
         let nonce_vec: &[u8; 12] = &nonce[..12].try_into().unwrap();
-        Ok([nonce_vec, ciphertext.as_slice()].concat())
+        let nonce_vec = [nonce_vec, ciphertext.as_slice()].concat();
+        Ok(BASE64_STANDARD.encode(nonce_vec).as_bytes().to_vec())
     }
 
     fn decode(&self, data: &[u8]) -> anyhow::Result<Vec<u8>> {
+        let data = BASE64_STANDARD.decode(data)?;
         let key = GenericArray::clone_from_slice(self.key.as_slice());
         let cipher = ChaCha20Poly1305::new(&key);
         let nonce = GenericArray::clone_from_slice(&data[0..12]);

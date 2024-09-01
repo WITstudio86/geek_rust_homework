@@ -7,6 +7,7 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.86"
+base64 = "0.22.1"
 chacha20poly1305 = "0.10.1"
 clap = { version = "4.5.16", features = ["derive"] }
 enum_dispatch = "0.3.13"
