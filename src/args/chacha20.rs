@@ -2,7 +2,7 @@ use std::{fs, path::Path};
 
 use clap::{Parser, Subcommand};
 
-use crate::{ensure_file_exists, read_input, verify_file, CmdExector, EnDeCode};
+use crate::{ensure_file_exists, process::EnDeCode, read_input, verify_file, CmdExector};
 pub struct Chacha {
     pub key: Vec<u8>,
 }

@@ -1,5 +1,5 @@
 mod args;
-use std::path::Path;
+use args::*;
 
 pub use args::{Args, Chacha, Command, TextDecryptArgs, TextEncryptArgs, TextSubCmd};
 
@@ -14,11 +14,3 @@ pub trait CmdExector {
 }
 
 mod process;
-
-pub trait EnDeCode {
-    fn new(key: &[u8]) -> Self;
-    fn readkey(path: &Path) -> anyhow::Result<Vec<u8>>;
-    fn genkey() -> anyhow::Result<Vec<u8>>;
-    fn encode(&self, data: &[u8]) -> anyhow::Result<Vec<u8>>;
-    fn decode(&self, data: &[u8]) -> anyhow::Result<Vec<u8>>;
-}

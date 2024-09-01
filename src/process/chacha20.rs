@@ -6,7 +6,15 @@ use chacha20poly1305::{
     ChaCha20Poly1305,
 };
 
-use crate::{Chacha, EnDeCode};
+use crate::Chacha;
+
+pub trait EnDeCode {
+    fn new(key: &[u8]) -> Self;
+    fn readkey(path: &Path) -> anyhow::Result<Vec<u8>>;
+    fn genkey() -> anyhow::Result<Vec<u8>>;
+    fn encode(&self, data: &[u8]) -> anyhow::Result<Vec<u8>>;
+    fn decode(&self, data: &[u8]) -> anyhow::Result<Vec<u8>>;
+}
 
 impl EnDeCode for Chacha {
     fn new(key: &[u8]) -> Self {
