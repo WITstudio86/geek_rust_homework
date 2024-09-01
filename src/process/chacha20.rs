@@ -15,11 +15,15 @@ impl EnDeCode for Chacha {
 
     fn genkey() -> anyhow::Result<Vec<u8>> {
         let key = ChaCha20Poly1305::generate_key(&mut OsRng);
-        Ok(key.to_vec())
+        // base64
+        let key = BASE64_STANDARD.encode(key).as_bytes().to_vec();
+        Ok(key)
     }
 
     fn readkey(path: &Path) -> anyhow::Result<Vec<u8>> {
         let key = fs::read(path)?;
+        // base64
+        let key = BASE64_STANDARD.decode(key)?;
         Ok(key)
     }
 
