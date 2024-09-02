@@ -15,11 +15,20 @@ $ rcli text decrypt -i fixtures/chacha20.sign -o fixtures/chacha20.txt -k fixtur
 
 ```shell
 # 生成 token
-$ cargo run  -- jwt sign --sub acme --aud device1 --exp 14d
+$ rcli jwt sign --sub acme --aud device1 --exp 14d
 # 生成 token 到指定文件
-$ cargo run  -- jwt sign --sub acme --aud device1 --exp 14d > fixtures/jwt.token
+$ rcli jwt sign --sub acme --aud device1 --exp 14d > fixtures/jwt.token
 # 验证 token 从 stdin
-$ cargo run  -- jwt verify
+$ rcli jwt verify
 # 验证 token 从文件
-$ cargo run  -- jwt verify -t fixtures/jwt.token
+$ rcli jwt verify -t fixtures/jwt.token
 ```
+
+## file server
+
+```shell
+rcli file-server
+rcli file-server --path fixtures --port 8080
+```
+
+> [test .rest](rest.rest)

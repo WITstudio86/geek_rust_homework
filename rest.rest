@@ -9,3 +9,6 @@ GET http://localhost:8080/files/src/
 
 ### tower - dir -not found
 GET http://localhost:8080/files/srcabc
+
+### serve on fixtures
+GET http://localhost:8080/files/chacha.txt
