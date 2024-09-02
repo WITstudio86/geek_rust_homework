@@ -4,6 +4,9 @@ pub use chacha20::{Chacha, TextDecryptArgs, TextEncryptArgs, TextSubCmd};
 mod jwt;
 pub use jwt::*;
 
+mod file;
+pub use file::*;
+
 use clap::{Parser, Subcommand};
 use enum_dispatch::enum_dispatch;
 
@@ -23,4 +26,7 @@ pub enum Command {
     /// jwt 签署
     #[command(subcommand, name = "jwt", about = "jwt 签署")]
     Jwt(JwtSignCmd),
+    /// 文件服务
+    #[command(name = "file-server", about = "文件服务")]
+    FileServer(FileServeOpts),
 }

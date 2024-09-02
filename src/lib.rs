@@ -8,9 +8,10 @@ pub use utils::*;
 
 use enum_dispatch::enum_dispatch;
 
+#[allow(async_fn_in_trait)]
 #[enum_dispatch]
 pub trait CmdExector {
-    fn execute(self) -> anyhow::Result<()>;
+    async fn execute(self) -> anyhow::Result<()>;
 }
 
 mod process;

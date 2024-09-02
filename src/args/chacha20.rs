@@ -44,7 +44,7 @@ pub struct TextDecryptArgs {
 }
 
 impl CmdExector for TextSubCmd {
-    fn execute(self) -> anyhow::Result<()> {
+    async fn execute(self) -> anyhow::Result<()> {
         match self {
             TextSubCmd::GenKey(opts) => {
                 let key = Chacha::genkey()?;

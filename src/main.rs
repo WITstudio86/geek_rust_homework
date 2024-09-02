@@ -2,7 +2,9 @@ use clap::Parser;
 use rcli::Args;
 use rcli::CmdExector;
 
-fn main() {
+#[tokio::main]
+async fn main() {
+    tracing_subscriber::fmt::init();
     let args = Args::parse();
-    args.command.execute().unwrap();
+    args.command.execute().await.unwrap();
 }

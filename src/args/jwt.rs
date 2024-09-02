@@ -39,7 +39,7 @@ pub struct JwtVerifyArgs {
 }
 
 impl CmdExector for JwtSignCmd {
-    fn execute(self) -> anyhow::Result<()> {
+    async fn execute(self) -> anyhow::Result<()> {
         match self {
             JwtSignCmd::Sign(opts) => {
                 let jwt = JwtSign::new();
