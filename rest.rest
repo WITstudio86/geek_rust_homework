@@ -1,0 +1,11 @@
+### index
+GET http://localhost:8080
+
+### tower - file
+GET http://localhost:8080/files/fixtures/chacha20.key
+
+### tower - dir -root
+GET http://localhost:8080/files/src/
+
+### tower - dir -not found
+GET http://localhost:8080/files/srcabc
